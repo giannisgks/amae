@@ -1,0 +1,229 @@
+  .top-right-buttons {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 2rem;
+  }
+
+  .top-logo {
+    position: absolute;
+    left: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 102;
+  }
+  
+  .logo-img {
+    height: 7.7rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* Show logo ONLY when scrolled AND menu is NOT open */
+  .top-wrapper.scrolled:not(.menu-open) .logo-img {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 400;
+  }
+
+  /* Hide logo when menu is open (even if scrolled) */
+  .top-wrapper.menu-open .logo-img {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  
+  
+  .btn {
+    background-color: rgba(255, 255, 255, 0.0);
+    border-radius: 10px;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn.contact {
+    color: #DEC9C0;
+    background-color: #8D4D3F;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-shadow: none;
+  }
+
+  .btn.contact:hover {
+    background-color: #DEC9C0;
+    color: #8D4D3F;
+    text-shadow: none;
+  }
+  
+
+  .btn.places{
+    color: #8D4D3F;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn.places:hover{
+    background-color: #8D4D3F;
+    color: #DEC9C0;
+    text-shadow: none;
+  }
+
+  .btn.questions{
+    color: #8D4D3F;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn.questions:hover{
+    background-color: #8D4D3F;
+    color: #DEC9C0;
+    text-shadow: none;
+  }
+
+  .top-wrapper.scrolled .btn {
+    color:  #8D4D3F;
+    text-shadow: none;
+  }
+
+  .top-wrapper.scrolled .btn:hover {
+    background-color: #DEC9C0;
+    color: #8D4D3F;
+  }
+
+  .top-wrapper.scrolled .btn.contact {
+    background-color: #DEC9C0; 
+    color: #8D4D3F;         
+  }
+  
+  .top-wrapper.scrolled .btn.contact:hover {
+    background-color: #8D4D3F;
+    color: #DEC9C0;           
+  }
+  
+
+  .burger {
+    position: absolute;  
+    top: 1rem;           
+    right: 1.5rem;       
+    font-size: 1.8rem;
+    color: #8D4D3F;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 20; 
+  }
+
+  .mobile-menu {
+    opacity: 0;
+}
+
+@media (max-width: 768px) {
+  
+    .top-right-buttons {
+      display: none !important;
+    }
+  
+    .burger {
+      color: #8D4D3F;
+      display: block;
+      opacity: 1;
+      position: absolute;
+      top: 0.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      z-index: 101;
+    }
+  
+    .burger.open {
+      color: #8D4D3F;
+    }
+  
+    .top-wrapper.scrolled .burger {
+      color: #8D4D3F;
+    }
+
+    .top-wrapper.scrolled{
+      background-color: #DEC9C0;
+    }
+  
+    /* Mobile menu base state: hidden above, transparent */
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.1rem;
+      background-color: #fff4f0;
+      position: fixed;
+      top: 0%;
+      left: 0;
+      width: 100%;
+      height: auto;
+      max-height: 0; 
+      overflow: hidden; 
+      box-sizing: border-box;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 100;
+      transition: max-height 1s ease, opacity 0.5s ease;
+      opacity: 0;
+      pointer-events: none;
+      transform-origin: top;
+    }
+  
+    /* When burger clicked: expand down */
+    .mobile-menu.open {
+      max-height: 300px; /* or enough for your buttons */
+      opacity: 1;
+      pointer-events: auto;
+    }
+  
+    /* Buttons inside mobile menu */
+    .mobile-menu .btn {
+      background-color: transparent; /* vanilla (transparent) */
+      color: #8D4D3F; /* red text based on your hex */
+      width: 100%; /* wider buttons */
+      border-radius: 0;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-weight: 600;
+      font-size: 1.15rem;
+      box-shadow: none;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  
+    /* Remove border on last button */
+    .mobile-menu .btn:last-child {
+      border-bottom: none;
+    }
+  
+    /* Optional: hover effect for buttons */
+    .mobile-menu .btn:hover {
+      background-color: #8D4D3F;
+      color: #DEC9C0;
+    }
+
+    .mobile-menu .btn:first-child {
+        margin-top: 1.5rem; /* adjust the value as needed */
+      }
+
+    .top-wrapper.scrolled .mobile-menu .btn {
+        background-color: #fff4f0;
+        color: #8D4D3F;
+        text-shadow: none;
+      }
+
+      .top-wrapper.scrolled.menu-open .mobile-menu .btn:active {
+        color: #DEC9C0 !important;
+        transform: scale(0.98);
+      }
+  }
+  

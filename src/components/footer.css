@@ -1,0 +1,114 @@
+.footer {
+    background: #DEC9C0;
+    color: #8D4D3F;
+    padding: 2.5rem 0 0.8rem 0;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 75rem;        
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+  
+  .footer-brand {
+    flex: 1 1 15.625rem;     
+  }
+  
+  .footer-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  
+  .footer-tagline {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    opacity: 0.8;
+  }
+  
+  .footer-socials {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-icon {
+    color: #8D4D3F;
+    font-size: 1.15rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .social-icon:hover {
+    color: black;
+  }
+  
+  .footer-links,
+  .footer-contact {
+    flex: 1 1 11.25rem;
+  }
+  
+  .footer-section-title {
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-links ul li {
+    margin-bottom: 0.7rem;
+  }
+  .footer-links ul li a {
+    color: #8D4D3F;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: color 0.2s;
+  }
+  .footer-links ul li a:hover {
+    color: black;
+  }
+  
+  .footer-contact address {
+    font-style: normal;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  .footer-email {
+    color: #8D4D3F;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+  .footer-email:hover {
+    color: black;
+  }
+  
+  .footer-copyright {
+    text-align: center;
+    padding: 1.5rem 2rem 0;
+    font-size: 1rem;
+    color: #8D4D3F;
+    border-top: 0.125rem solid #8D4D3F;  
+    margin-top: 1.8rem;
+    opacity: 0.95;
+  }
+  
+
+  @media (max-width: 56.25rem) {   
+    .footer-container {
+      flex-direction: column;
+      gap: 2.8rem;
+    }
+    .footer-brand,
+    .footer-links,
+    .footer-contact {
+      flex: 1 1 100%;
+    }
+  }
+  

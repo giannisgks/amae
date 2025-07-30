@@ -1,0 +1,51 @@
+.top-logo-red {
+    position: absolute;
+    top: 42%;
+    left: 10%;               
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .logored {
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    width: 100%;               
+    height: auto;               
+  }
+  
+  @media (max-width: 760px) {
+    .top-logo-red {
+      width: 100%;
+      position: relative;
+      top: auto;
+      margin-left: -15%; /* Move the logo more to the left */
+      left: 10%;         /* Fine-tune horizontal position if needed */
+      transform: none;
+      text-align: center;
+    }
+  
+    .logored {
+      width: 300%;
+      max-width: none;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  
+  .booking-heading {
+    font-size: 2rem;          /* Regular screens: 2rem */
+    line-height: 3.5;
+    min-height: 10rem;
+    text-align: center;
+    margin: 10rem 0;
+  }
+  
+  /* For small screens (max-width: 760px), use 1rem */
+  @media (max-width: 760px) {
+    .booking-heading {
+      font-size: 1rem;
+    }
+  }
+  
+  

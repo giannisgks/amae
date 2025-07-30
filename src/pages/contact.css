@@ -1,0 +1,30 @@
+.top-logo-red {
+    position: absolute;
+    top: 42%;
+    left: 10%;               
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .logored {
+    width: 100%;                
+  }
+
+  .contact-heading {
+    font-size: 4.5rem;
+    line-height: 2;
+    min-height: 10rem;
+    text-align: center;
+    margin: 8rem 0rem 0rem -50rem;
+  }
+  
+  /* For small screens (max-width: 760px), use 1rem */
+  @media (max-width: 760px) {
+    .booking-heading {
+      font-size: 1rem;
+    }
+  }
+  
+  

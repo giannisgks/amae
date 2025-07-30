@@ -1,0 +1,18 @@
+.top-logo-red {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    width: 13%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .logored {
+    cursor: pointer !important;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .logored:hover {
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
