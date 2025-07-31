@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from "../components/layout";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { Helmet } from "react-helmet";
-import { navigate } from "gatsby";
 import "./questions.css";
 
 const faqs = [
@@ -14,17 +13,63 @@ const faqs = [
   { question: "Can Amae make reservations for me?", answer: "Yes, we can book tables or accommodation on your behalf. Just let us know the date and what you’re looking for." },
   { question: "Which areas do you cover?", answer: "We offer suggestions across the entire Preveza region: Preveza town, Kanali, Monolithi, Loutsa, Parga, and surrounding beaches. If you have a car, we can also suggest more hidden gems off the beaten path." },
   { question: "What languages do you support?", answer: "We currently offer support in English and Greek." }
- ];
+];
 
-function QuestionsPage() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(null);
+function AccordionItem({ faq, isOpen, onClick }) {
+  const contentRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 0);
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    const el = containerRef.current;
+    if (!el || !contentRef.current) return;
+
+    if (isOpen) {
+      const scrollHeight = contentRef.current.scrollHeight;
+      el.style.height = scrollHeight + "px";
+      el.style.opacity = "1";
+    } else {
+      const currentHeight = el.scrollHeight;
+      el.style.height = currentHeight + "px";
+      requestAnimationFrame(() => {
+        el.style.height = "0px";
+        el.style.opacity = "0";
+      });
+    }
+  }, [isOpen]);
+
+  return (
+    <div className="faq-item">
+      <button className="faq-question" onClick={onClick}>
+        {faq.question}
+        <span className={`faq-icon${isOpen ? " open" : ""}`}>▼</span>
+      </button>
+      <div
+        ref={containerRef}
+        className="faq-answer-wrapper"
+        style={{
+          height: "0px",
+          overflow: "hidden",
+          transition: "height 0.4s ease, opacity 0.4s ease",
+          opacity: 0,
+        }}
+        aria-hidden={!isOpen}
+      >
+        <div ref={contentRef} className="faq-answer-inner">
+          {faq.answer}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function QuestionsPage() {
+  const [openIndex, setOpenIndex] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -34,38 +79,31 @@ function QuestionsPage() {
         <title>Questions | Amae Preveza</title>
         <meta name="description" content="The comfort found in being cared for." />
       </Helmet>
+
       <div className="faq-main-container">
-  <div className="faq-images">
-    <img src="/preveza1q.jpg" alt="Description 1" />
-    <img src="/preveza2q.jpg" alt="Description 2" />
-    <img src="/preveza3q.jpg" alt="Description 3" />
-    <img src="/preveza4q.jpg" alt="Description 4" />
-  </div>
-  
-  <div className="faq-container">
-    <h1 className="faq-title">Frequently Asked Questions</h1>
-    <div className="faq-list">
-      {faqs.map((faq, idx) => (
-        <div key={idx} className="faq-item">
-          <button
-            className="faq-question"
-            onClick={() => setOpen(open === idx ? null : idx)}
-            aria-expanded={open === idx}
-            aria-controls={`faq-answer-${idx}`}
-          >
-            {faq.question}
-            <span className={`faq-icon${open === idx ? " open" : ""}`}>▼</span>
-          </button>
-          {open === idx && (
-            <div id={`faq-answer-${idx}`} className="faq-answer">
-              {faq.answer}
-            </div>
-          )}
+        <div className="faq-images">
+          <img src="/preveza1q.jpg" alt="Description 1" />
+          <img src="/preveza2q.jpg" alt="Description 2" />
+          <img src="/preveza3q.jpg" alt="Description 3" />
+          <img src="/preveza4q.jpg" alt="Description 4" />
         </div>
-      ))}
-    </div>
-  </div>
-</div>
+
+        <div className="faq-container">
+          <h1 className="faq-title">Frequently Asked Questions</h1>
+          <div className="faq-list">
+            {faqs.map((faq, idx) => (
+              <AccordionItem
+                key={idx}
+                faq={faq}
+                isOpen={openIndex === idx}
+                onClick={() =>
+                  setOpenIndex(openIndex === idx ? null : idx)
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </Layout>
